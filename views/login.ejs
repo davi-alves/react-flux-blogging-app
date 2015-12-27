@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React+Flux Bloggin App / Login</title>
+  <link rel="stylesheet" type="text/css" href="bower_components/skeleton/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/skeleton/css/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+      <div class="row">
+          <h1>Bloggin App</h1>
+      </div>
+      <div class="row">
+          <div class="six columns">
+              <h2>Logi In</h2>
+              <form action="/login" method="post">
+                  <p>
+                      <label for="username">Username</label>
+                      <input type="text" name="username" class="u-full-width">
+                  </p>
+                  <p>
+                      <label for="password">Password</label>
+                      <input type="password" name="password" class="u-full-width">
+                  </p>
+                  <p>
+                      <button class="button-primary">Log In</button>
+                  </p>
+              </form>
+          </div>
+          <div class="six columns">
+              <h2>Sign Up</h2>
+              <form action="/signup" method="post">
+                  <p>
+                      <label for="name">Full Name</label>
+                      <input type="text" name="name" class="u-full-width" required>
+                  </p>
+                  <p>
+                      <label for="email">Email (Will be used to get your Gravatar)</label>
+                      <input type="email" name="email" class="u-full-width" required>
+                  </p>
+                  <p>
+                      <label for="username">Username</label>
+                      <input type="text" name="username" class="u-full-width" required>
+                  </p>
+                  <p>
+                      <label for="password">Password</label>
+                      <input type="password" name="password" class="u-full-width" required>
+                  </p>
+                  <p>
+                      <label for="password-confirm">Confirm Password</label>
+                      <input type="password" name="password-confirm" class="u-full-width" required>
+                  </p>
+                  <p>
+                      <button class="button-primary">Sign Up</button>
+                  </p>
+              </form>
+          </div>
+      </div>
+  </div>
+  <script type="text/javascript">
+    // small form validation
+    (function() {
+       'use strict';
+
+       var form = document.querySelector('form[action$=signup]');
+       form.addEventListener('submit', function (event) {
+            var password        = this.querySelector('input[name=password]');
+            var passwordConfirm = this.querySelector('input[name=password-confirm]');
+            if (password.value !== passwordConfirm.value) {
+                event.preventDefault();
+                password.classList.add('error');
+                passwordConfirm.classList.add('error');
+            }
+       })
+    })();
+  </script>
+</body>
+</html>

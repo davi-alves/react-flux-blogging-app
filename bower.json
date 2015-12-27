@@ -1,0 +1,30 @@
+{
+  "name": "react-flux-blogging",
+  "description": "A small blogging app using React and Flux.",
+  "main": "server.js",
+  "authors": [
+    "Davi Alves"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "flux",
+    "es6"
+  ],
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "~2.0.4"
+  }
+}
