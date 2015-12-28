@@ -37,6 +37,15 @@ const post = function (url, data) {
  */
 const API = {
   /**
+   * Init the api
+   *
+   * @return {void}
+   */
+  init() {
+    API.fetchChirps();
+    API.fetchUsers();
+  },
+  /**
    * Fetch chirps from API
    *
    * @return {void}
@@ -48,7 +57,7 @@ const API = {
    * @param  {String} text chirp text
    * @return {void}
    */
-  saveChirp: (text) => {
+  saveChirp(text) {
     text = text.trim();
     if (text === '') {
       return;
@@ -61,17 +70,13 @@ const API = {
    *
    * @return {void}
    */
-  fetchUsers: () => get('/api/users').then(actions.gotUsers.bind(actions))
-};
-
-/**
- * Init the api
- *
- * @return {void}
- */
-API.init = function () {
-  API.fetchChirps();
-  API.fetchUsers();
+  fetchUsers: () => get('/api/users').then(actions.gotUsers.bind(actions)),
+  followUser(cid) {
+    post(`/api/follow/${cid}`).then(actions.followed.bind(actions));
+  },
+  unfollowUser(cid) {
+    post(`/api/unfollow/${cid}`).then(actions.unfollowed.bind(actions));
+  },
 };
 
 // Register the API to application events
@@ -80,6 +85,12 @@ dispatcher.register((action) => {
   // save chirp to database when a CHIRP event is dispatched
   case constants.CHIRP:
     API.saveChirp(action.data);
+    break;
+  case constants.FOLLOW:
+    API.followUser(action.data);
+    break;
+  case constants.UNFOLLOW:
+    API.unfollowUser(action.data);
     break;
   default:
     break;

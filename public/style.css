@@ -1,10 +1,11 @@
 input.error {border: 1px dashed #F00;}
 
+.chirp, .profile-img { border-radius: 4px; }
+.chirp, .profile-data ul { list-style-type: none; }
 .chirp {
     list-style-type: none;
     padding: 6px;
     border: 1px solid #d1d1d1;
-    border-radius: 4px;
 }
 .chirp p { margin-bottom: 0; }
 .chirp img { display: none; }
@@ -16,5 +17,6 @@ input.error {border: 1px dashed #F00;}
     }
 }
 
+.timestamp, .faded { color: #d1d1d1; }
 
-.timestamp { color: #d1d1d1; }
+.profile-data h1 { margin-bottom: 0; }

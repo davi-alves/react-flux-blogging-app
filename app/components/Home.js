@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
+import actions from '../actions';
 import ChirpStore from '../stores/chirps';
 import ChirpInput from './ChirpInput';
 import ChirpList from './ChirpList';
-import actions from '../actions';
 
 const getChips = function () {
   return {
-    chirps: ChirpStore.all()
+    chirps: ChirpStore.timeline()
   };
 };
 

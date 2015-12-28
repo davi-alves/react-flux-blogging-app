@@ -1,6 +1,5 @@
 import moment from 'moment';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 
 import { avatar } from '../utils';

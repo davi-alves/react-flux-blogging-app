@@ -1,33 +1,21 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React from 'react';
 
 import DisplayBox from './DisplayBox';
 import FollowButton from './FollowButton';
-import UserStore from '../stores/users';
 
-export default class UserListItem extends Component {
-  constructor(props) {
-    super(props);
+const UserListItem = (props) => {
+  const user = props.user;
 
-    this.onClickFollow = this.onClickFollow.bind(this);
-  }
-
-  onClickFollow() {
-    console.log('clicked');
-  }
-
-  render() {
-    const user = this.props.user;
-    const following = _.includes(user.following, UserStore.currentUser().cid);
-
-    return (
-      <DisplayBox user={user}>
-        <FollowButton following={following} toggle={this.onClickFollow}/>
-      </DisplayBox>
-    );
-  }
-}
+  return (
+    <DisplayBox user={user}>
+      <FollowButton user={user}/>
+    </DisplayBox>
+  );
+};
 
 UserListItem.propTypes = {
   user: React.PropTypes.object.isRequired
 };
+
+export default UserListItem;

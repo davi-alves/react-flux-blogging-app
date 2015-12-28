@@ -9,7 +9,7 @@ var LocallyDB     = require('locallydb');
 var db    = new LocallyDB('./.data');
 var users = db.collection('users');
 
-var SAFE_USER_DATA = ['cid', 'name', 'email', 'username', 'fallowing'];
+var SAFE_USER_DATA = ['cid', 'name', 'email', 'username', 'following'];
 
 /**
  * Create a hash for given password
@@ -83,11 +83,32 @@ router
   .get('/api/users', function (req, res) {
     res.json(users.toArray().map(makeUserSafe));
   })
+  // user follow
+  .post('/api/follow/:id', loginRequired, function (req, res) {
+    var id = parseInt(req.params.id, 10);
+    if (!_.includes(req.user.following, id)) {
+      req.user.following.push(id);
+      users.update(req.user.cid, req.user);
+    }
+
+    res.json(makeUserSafe(req.user));
+  })
+  // user unfollow
+  .post('/api/unfollow/:id', loginRequired, function (req, res) {
+    var id = parseInt(req.params.id, 10);
+    if (_.includes(req.user.following, id)) {
+      var userIndex = req.user.following.indexOf(id);
+      req.user.following.splice(userIndex, 1);
+      users.update(req.user.cid, req.user);
+    }
+
+    res.json(makeUserSafe(req.user));
+  })
   // login page
   .get('/login', function (req, res) {
     return res.render('login');
   })
-  .get('/logout', function (req, res) {
+  .get('/logout', loginRequired, function (req, res) {
     req.logout();
     return res.redirect('/login');
   })
@@ -111,7 +132,7 @@ router
       email: req.body.email,
       username: req.body.username,
       passwordHash: hash(req.body.password),
-      fallowing: []
+      following: []
     };
 
     var id = users.insert(user);

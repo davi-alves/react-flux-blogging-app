@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 
 import actions from '../actions';
@@ -9,7 +8,7 @@ import UserListItem from './UserListItem';
 const getUserData = function () {
   return {
     users: UserStore.all(),
-    user: UserStore.currentUser()
+    user: UserStore.currentUser
   };
 };
 

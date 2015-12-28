@@ -20,10 +20,16 @@ const storeMethods = {
     data
       .filter((item) => ids.indexOf(item.cid) === -1)
       .forEach(this.add.bind(this));
+    this.sort();
   },
 
   add(item) {
     this._data.push(item);
+    this.sort();
+  },
+
+  sort() {
+    this._data.sort((a, b) => +new Date(b.$created) - +new Date(a.$created));
   },
 
   all() {

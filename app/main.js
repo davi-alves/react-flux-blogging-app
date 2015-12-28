@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import API from './api';
 import App from './components/App';
 import Home from './components/Home';
-import User from './components/User';
+import UserProfile from './components/UserProfile';
 import UserList from './components/UserList';
 
 // init the api
@@ -15,7 +15,7 @@ render((
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="/user/:id" component={User}/>
+      <Route path="/user/:id" component={UserProfile}/>
       <Route path="/users" component={UserList}/>
     </Route>
   </Router>

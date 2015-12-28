@@ -6,13 +6,11 @@ export default extend({
     // when users are fetched from the server
     this.bind(constants.GOT_USERS, this.set);
     // when a single chirp is fetched form server
-    this.bind(constants.FOLLOW, this.updateUser);
     this.bind(constants.FOLLOWED, this.updateUser);
+    this.bind(constants.UNFOLLOWED, this.updateUser);
   },
   updateUser(data) {
     this.currentUser = data;
   },
-  currentUser() {
-    return window.USER;
-  },
+  currentUser: window.USER,
 });
