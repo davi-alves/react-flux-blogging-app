@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react';
 
 import UserStore from '../stores/users';
@@ -17,7 +16,7 @@ const getState = function (props) {
 };
 
 const UserProfile = (props) => {
-  const user = props.user || {};
+  const user   = props.user || {};
   const chirps = props.chirps.map((item) => (
     <li key={item.cid}>
       <span className="faded">

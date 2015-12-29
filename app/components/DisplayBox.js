@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { avatar } from '../utils';
 
 const DisplayBox = (props) => {
-  const user = props.user;
+  const user      = props.user;
   const timestamp = props.timestamp ?
     ` ${String.fromCharCode(8226)} ${moment(props.timestamp).fromNow()}` : '';
 

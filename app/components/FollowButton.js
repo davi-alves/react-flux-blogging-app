@@ -5,7 +5,7 @@ import UserStore from '../stores/users';
 import actions from '../actions';
 import storeBind from '../mixins/store-bind';
 
-const getState = function (props) {
+const getState = function () {
   let currentUser = UserStore.currentUser;
 
   return {
@@ -14,10 +14,8 @@ const getState = function (props) {
   };
 };
 
-const isFallowing = (props) =>
-  _.contains(props.following, props.user.cid);
-
-const toggleFollow = function(props) {
+const isFallowing  = (props) => _.contains(props.following, props.user.cid);
+const toggleFollow = function (props) {
   return function () {
     let cid = props.user.cid;
 

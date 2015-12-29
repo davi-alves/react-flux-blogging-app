@@ -6,8 +6,8 @@ import ChirpInput from './ChirpInput';
 import ChirpList from './ChirpList';
 import storeBind from '../mixins/store-bind';
 
-const getState = () => ({ chirps: ChirpStore.timeline() });
-const Home = (props) => {
+const getState = () => ({chirps: ChirpStore.timeline()});
+const Home     = (props) => {
   return (
     <div>
       <ChirpInput onSave={actions.chirp}/>

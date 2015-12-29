@@ -1,26 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import ChirpListItem from './ChirpListItem';
 
-export default class ChirpList extends Component {
+const ChirpList = (props) => {
+  const chirps = props.chirps.map((item) => <ChirpListItem key={item.cid} chirp={item}/>);
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const chirps = this.props.chirps.map((item) => <ChirpListItem key={item.cid} chirp={item}/>);
-
-    return (
-      <div className="row">
-        <div className="twelve columns">
-          {chirps}
-        </div>
+  return (
+    <div className="row">
+      <div className="twelve columns">
+        {chirps}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 ChirpList.propTypes = {
   chirps: React.PropTypes.array.isRequired
 };
+
+export default ChirpList;

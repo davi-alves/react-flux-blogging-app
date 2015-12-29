@@ -67,19 +67,19 @@ passport.deserializeUser(function (cid, done) {
 
 router = router();
 router
-    .use(bodyParser.urlencoded({extended: true}))
-    .use(bodyParser.json())
-    .use(require('cookie-parser')())
-    .use(require('express-session')({
-      secret: 'adfafadf08adf80ad8f8da0f0aafdad',
-      resave: false,
-      saveUninitialized: false
-    }))
-    .use(passport.initialize())
-    .use(passport.session());
+  .use(bodyParser.urlencoded({extended: true}))
+  .use(bodyParser.json())
+  .use(require('cookie-parser')())
+  .use(require('express-session')({
+    secret: 'adfafadf08adf80ad8f8da0f0aafdad',
+    resave: false,
+    saveUninitialized: false
+  }))
+  .use(passport.initialize())
+  .use(passport.session());
 
 router
-  // user list
+// user list
   .get('/api/users', function (req, res) {
     res.json(users.toArray().map(makeUserSafe));
   })

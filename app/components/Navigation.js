@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import UserStore from '../stores/users';
 import storeBind from '../mixins/store-bind';
 
-const getState = () =>({ user: UserStore.currentUser});
+const getState   = () =>({user: UserStore.currentUser});
 const Navigation = (props) => {
   return (
     <ul>
