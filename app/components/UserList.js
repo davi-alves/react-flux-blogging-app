@@ -1,49 +1,25 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
 
-import actions from '../actions';
 import UserStore from '../stores/users';
 import UserListItem from './UserListItem';
+import storeBind from '../mixins/store-bind';
 
-const getUserData = function () {
-  return {
-    users: UserStore.all(),
-    user: UserStore.currentUser
-  };
+const getState = () => ({
+  users: UserStore.all(),
+  user: UserStore.currentUser
+});
+const UserList = (props) => {
+  const users = props.users
+    .filter((user) => props.user.cid !== user.cid)
+    .map((user) => <UserListItem key={user.cid} user={user}/>);
+
+  return (
+    <div className="row">
+      <div className="twelve columns">
+        <ul>{users}</ul>
+      </div>
+    </div>
+  );
 };
 
-export default class UserList extends Component {
-
-  constructor() {
-    super();
-
-    this.state = getUserData();
-    this._onChange = this._onChange.bind(this);
-  }
-
-  componentWillMount() {
-    UserStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    UserStore.removeChangeListener(this._onChange);
-  }
-
-  _onChange() {
-    this.setState(getUserData());
-  }
-
-  render() {
-    const users = this.state.users
-      .filter((user) => this.state.user.cid !== user.cid)
-      .map((user) => <UserListItem key={user.cid} user={user}/>);
-
-    return (
-      <div className="row">
-        <div className="twelve columns">
-          <ul>{users}</ul>
-        </div>
-      </div>
-    );
-  }
-}
+export default storeBind(UserList, [UserStore], getState);

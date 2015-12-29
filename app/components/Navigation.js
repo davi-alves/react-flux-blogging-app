@@ -1,38 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 import UserStore from '../stores/users';
+import storeBind from '../mixins/store-bind';
 
 const getState = () =>({ user: UserStore.currentUser});
+const Navigation = (props) => {
+  return (
+    <ul>
+      <li><Link to="/">Timeline</Link></li>
+      <li><Link to="/users">Users</Link></li>
+      <li><a href="/logout">Logout</a> ({props.user.username})</li>
+    </ul>
+  );
+};
 
-export default class Navigation extends Component {
-
-  constructor() {
-    super();
-
-    this.state = getState();
-    this._onChange = this._onChange.bind(this);
-  }
-
-  componentWillMount() {
-    UserStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    UserStore.removeChangeListener(this._onChange);
-  }
-
-  _onChange() {
-    this.setState(getState());
-  }
-
-  render() {
-    return (
-      <ul>
-        <li><Link to="/">Timeline</Link></li>
-        <li><Link to="/users">Users</Link></li>
-        <li><a href="/logout">Logout</a> ({this.state.user.username})</li>
-      </ul>
-    );
-  }
-}
+export default storeBind(Navigation, [UserStore], getState);
