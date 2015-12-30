@@ -2,7 +2,7 @@ var express   = require('express');
 var path      = require('path');
 var httpProxy = require('http-proxy');
 
-var login     = require('./server/login');
+var login = require('./server/login');
 
 // We need to add a configuration to our proxy server,
 // as we are now proxying outside localhost
@@ -46,7 +46,7 @@ app
     });
   });
 
-proxy.on('error', function(e) {
+proxy.on('error', function (e) {
   console.log('Could not connect to proxy, please try again...');
 });
 

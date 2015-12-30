@@ -1,8 +1,8 @@
-var Webpack = require('webpack');
-var path = require('path');
+var Webpack         = require('webpack');
+var path            = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
-var buildPath = path.resolve(__dirname, 'public', 'build');
-var mainPath = path.resolve(__dirname, 'app', 'main.js');
+var buildPath       = path.resolve(__dirname, 'public', 'build');
+var mainPath        = path.resolve(__dirname, 'app', 'main.js');
 
 var config = {
 
@@ -37,23 +37,23 @@ var config = {
 
     loaders: [
 
-    // I highly recommend using the babel-loader as it gives you
-    // ES6/7 syntax and JSX transpiling out of the box
-    {
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: [nodeModulesPath],
-      query: {
-        presets: ['es2015', 'react']
-      }
-    },
+      // I highly recommend using the babel-loader as it gives you
+      // ES6/7 syntax and JSX transpiling out of the box
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: [nodeModulesPath],
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
 
-    // Let us also add the style-loader and css-loader, which you can
-    // expand with less-loader etc.
-    {
-      test: /\.css$/,
-      loader: 'style!css'
-    }
+      // Let us also add the style-loader and css-loader, which you can
+      // expand with less-loader etc.
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      }
 
     ]
   },
